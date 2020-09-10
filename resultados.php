@@ -118,17 +118,17 @@ session_destroy()
 
 			<div class="col-12">
 					<div class="form-group">
-						<label>Indemnizacion por años de Servicio:</label>
-						<input type="text" class="form-control" name="indem_servicio">
+						<label>Indemnizacion por años de Servicio:</label>	
+						<?php echo "<input type='text' class='form-control' name='indem_servicio' value=$indemnizacionPorAnhosDeServicio>" ?>
 					</div>
 					<div class="form-group">
 						<label>Indemnizacion sustitutiva del aviso previo:</label>
-						<input type="text" class="form-control" name="indem_sust">
+						<?php echo "<input type='text' class='form-control' name='indem_sust' value=$indemnizacionSustitutiva>" ?>
 					</div>
 					<h6>Vacaciones proporcionales Pendientes:</h6>
 					<div class="form-group">
 						<label>Mes 1:</label>
-						<input type="text" class="form-control" name="vac_prop">
+						<?php echo "<input type='text' class='form-control' name='vac_prop' value=$vacacionesProporcionales>" ?>
 					</div>
 					<div class="form-group">
 						<label>Feriado Proporcional:</label>
@@ -136,7 +136,7 @@ session_destroy()
 					</div>
 					<div class="form-group">
 						<h6>TOTAL A PAGAR</h6>
-						<input type="text" class="form-control" name="total"  readonly="readonly">
+						<?php echo "<input type='text' class='form-control' name='total' readonly='readonly' value=$totalAPagar>"?>
 					</div>
 									
 					<h6>
