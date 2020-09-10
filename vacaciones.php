@@ -52,7 +52,20 @@
 		<div class="row">
 
 			<div class="col-12">
+					<h2>Vacaciones</h2>
 					<div class="form-group">
+						<label>Días de vacaciones pendientes (aproximado)</label>
+						<input type="text" class="form-control" name="diasVacaciones"> 
+					
+					</div>
+
+					<div class="form-group">
+						<label>Total a pagar vacaciones</label>
+						<input type="text" class="form-control" name="totalPagarVacaciones">
+					</div>
+
+					<h2>Remuneraciones</h2>
+<!--					<div class="form-group">
 						<label>Total Vacaciones otorgadas durante la permanencia del trabajador (días hábiles)</label>
 						<input type="text" class="form-control" name="nombre">
 					</div>
@@ -80,7 +93,7 @@ Los resultados obtenidos de este simulador están diseñados con propósitos com
 Su precisión no está garantizada.  
 </h6>
 			</div>
-				
+!-->				
 			<div class="col-12 text-center">
 				<!--<div class="btn-group mr-2" role="group">
 					<a href="javascript:void(0)" class="btn btn_primario btn_primario2 pl-5 pr-5 mb-3">VOLVER</a>

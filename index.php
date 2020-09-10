@@ -29,9 +29,10 @@
 				<div class="stept steptactual d-sm-block">Antecedentes</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step">2</div>
-				<div class="stept d-sm-block">Vacaciones</div>
-			</div>
+                                <div class="step steptactual">2</div>
+                                <div class="stept steptactual d-sm-block">Vacaciones</div>
+                        </div>
+
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
 				<div class="step">3</div>
 				<div class="stept d-sm-block">Remuneraciones</div>
