@@ -1,8 +1,62 @@
-<?
+<?php
 # template resultados busqueda autos
 //require_once('../../mic/sic.php');
 
+
+session_start();
+
+
+       ## 2. Remuneraciones
+		
+		$_SESSION["diasVacacionesPendientes"] = $_POST["diasVacacionesPendientes"];
+
+                $_SESSION["sueldoBase"] = $_POST["sueldoBase"];
+                $_SESSION["bonosFijosImponibles"] = $_POST["bonosFijosImponibles"];
+
+		$_SESSION["mesUno"] = $_POST["mesUno"];
+		$_SESSION["mesDos"] = $_POST["mesDos"];
+		$_SESSION["mesTres"] = $_POST["mesTres"];
+
+
+                $_SESSION["bonoColacion"] = $_POST["bonoColacion"];
+                $_SESSION["bonoMovilizacion"] = $_POST["bonoMovilizacion"];
+
+		foreach ($_SESSION as $key=>$val)
+    			echo $key." ".$val."<br/>";
+
+	## -- Calculo de Resultados.
+		
+		# 1. Paso 1: Antecedentes
+		
+		# 2. Paso 2: Vacaciones
+
+			$totalAPagarPorVacaciones = '';
+	
+		# 3. Paso 3.1 - Remuneraciones Variables
+			
+			$promedioBonosUltimosTresMeses = (intval($_SESSION["mesUno"]) + intval($_SESSION["mesDos"]) + intval($_SESSION["mesTres"])/3);
+			echo "Promedio ultimos tres meses: ", $promedioBonosUltimosTresMeses, "\n";
+			echo "<br>";
+			
+		# 3. Paso 3.2 - Cálculo Vacaciones
+			
+			$baseCalculoVacaciones = intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonosFijosImponibles"]) + intval($promedioBonosUltimosTresMeses);
+			echo "Base Calculo Vacaciones: ", $baseCalculoVacaciones, "\n";
+			echo "<br>";
+
+			$valorRemuneracionDiaria = ((intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]))/30);
+			echo "Valor Remuneracion Diaria: ", $valorRemuneracionDiaria, "\n";
+			echo "<br>";
+
+			$gratificacionMensual = 
+
+
+
+session_destroy()
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,15 +84,11 @@
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
 				<div class="step">2</div>
-				<div class="stept d-sm-block">Vacaciones</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step">3</div>
 				<div class="stept d-sm-block">Remuneraciones</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step steptactual">4</div>
-				<div class="stept steptactual d-sm-block">Resultados</div>
+				<div class="step">3</div>
+				<div class="stept d-sm-block">Resultados</div>
 			</div>
 			
 		</div>
@@ -46,7 +96,6 @@
 
 	<div class="clearfix"></div>
 
-	<!-- INICIO FORMULARIO -->
 	<form action="resultados.php" name="customForm" id="customForm" method="post" enctype="multipart/form-data" class="publicar">
 		<div class="container mb-6">
 		<div class="row">
@@ -83,20 +132,20 @@ Su precisión no está garantizada.
 			</div>
 				
 			<div class="col-12 text-center">
-				<!--<div class="btn-group mr-2" role="group">
 					<a href="javascript:void(0)" class="btn btn_primario btn_primario2 pl-5 pr-5 mb-3">VOLVER</a>
 				</div>
 				<div class="btn-group mr-2 mt-3" role="group">
 					<input type="submit" name="Registrar" id="send" value="CONTINUAR" class="btn btn_primario pl-5 pr-5 mb-3"/>
-				</div>		-->		
+				</div>	
 			</div>
 		</div>
 	</div>
 </form>
-	<!-- FIN FORMULARIO -->
 
 	<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
+
+

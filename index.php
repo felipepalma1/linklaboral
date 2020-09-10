@@ -1,6 +1,9 @@
-<?
+<?php
 # template resultados busqueda autos
 //require_once('../../mic/sic.php');
+
+
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -30,15 +33,11 @@
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
                                 <div class="step steptactual">2</div>
-                                <div class="stept steptactual d-sm-block">Vacaciones</div>
+                                <div class="stept steptactual d-sm-block">Remuneraciones</div>
                         </div>
 
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
 				<div class="step">3</div>
-				<div class="stept d-sm-block">Remuneraciones</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step">4</div>
 				<div class="stept d-sm-block">Resultados</div>
 			</div>
 			
@@ -48,7 +47,7 @@
 	<div class="clearfix"></div>
 
 	<!-- INICIO FORMULARIO -->
-	<form action="vacaciones.php" name="customForm" id="customForm" method="post" enctype="multipart/form-data" class="publicar">
+	<form action="remuneraciones.php" name="customForm" id="customForm" method="post" enctype="multipart/form-data" class="publicar">
 		<div class="container mb-6">
 		<div class="row">
 
@@ -56,7 +55,7 @@
 					<div class="form-group">
 						<label>Ingrese Artículo Causal de Finiquito</label>
 						<div class="select">
-						<select name="articulo" onchange="changeList(this);">
+						<select name="causalFiniquito" onchange="changeList(this);">
 							<option selected="selected" value="1">Art. 161 Necesidades de la empresa.</option>
 		                    <option selected="selected" value="2">Art. 159 Inciso 1. Mutuo acuerdo de las partes.</option>
 		                    <option value="3">Art. 159 Inciso 2. Renuncia del Trabajador.</option>
@@ -76,11 +75,11 @@
 					</div>
 					<div class="form-group">
 						<label>Fecha de contrato:</label>
-						<input type="date" class="form-control" name="fechacontrato">
+						<input type="date" class="form-control" name="fechaContrato">
 					</div>
 					<div class="form-group">
 						<label>Fecha de finiquito</label>
-						<input type="date" class="form-control" name="fechafiniquito">
+						<input type="date" class="form-control" name="fechaFiniquito">
 					</div>
 					<!--<div class="form-group">
 						<label>Total días trabajados entre la fecha de Contrato y Finiquito</label>

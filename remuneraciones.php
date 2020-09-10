@@ -1,8 +1,21 @@
-<?
+<?php
 # template resultados busqueda autos
 //require_once('../../mic/sic.php');
 
+
+session_start();
+
+
+       ## 1. Antecedentes
+                $_SESSION["causalFiniquito"] = $_POST["causalFiniquito"];
+                $_SESSION["fechaContrato"] = $_POST["fechaContrato"];
+                $_SESSION["fechaFiniquito"] = $_POST["fechaFiniquito"];
+
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -29,15 +42,11 @@
 				<div class="stept d-sm-block">Antecedentes</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step">2</div>
-				<div class="stept d-sm-block">Vacaciones</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step steptactual">3</div>
+				<div class="step steptactual">2</div>
 				<div class="stept steptactual d-sm-block">Remuneraciones</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-4">
-				<div class="step">4</div>
+				<div class="step">3</div>
 				<div class="stept d-sm-block">Resultados</div>
 			</div>
 			
@@ -52,69 +61,53 @@
 		<div class="row">
 
 			<div class="col-12">
+					<h2>Vacaciones</h2>
 					<div class="form-group">
-						<label>Sueldo Base:</label>
-						<input type="text" class="form-control" name="nombre">
+						<label>Días de vacaciones pendientes (aproximado)</label>
+						<input type="text" class="form-control" name="diasVacacionesPendientes"> 
+					
 					</div>
+					
+
+					<h2>Remuneraciones</h2>
+
 					<div class="form-group">
-						<label>Suma de Bonos Fijos imponibles del último mes de remuneración:</label>
-						<input type="text" class="form-control" name="apellido">
-					</div>
-					<h6>Últimas 3 remuneraciones variables:</h6>
-					<div class="form-group">
-						<label>Mes 1:</label>
-						<input type="text" class="form-control" name="rut">
-					</div>
-					<div class="form-group">
-						<label>Mes 2:</label>
-						<input type="email" class="form-control" name="email">
-					</div>
-					<div class="form-group">
-						<label>Mes 3:</label>
-						<input type="text" class="form-control" name="movil">
-					</div>
-					<div class="form-group">
-						<label>Promedio de Bonos Variables de los 3 últimos meses:</label>
-						<input type="text" class="form-control" name="movil"  readonly="readonly">
+						<label>Sueldo Base</label>
+						<input type="text" class="form-control" name="sueldoBase">
 					</div>
 
-					<h6>Cálculo de vacaciones:</h6>
 					<div class="form-group">
-						<label>Base Cálculo Vacaciones</label>
-						<input type="text" class="form-control" name="rut" readonly="readonly">
-					</div>
-					<div class="form-group">
-						<label>Valor Remuneración Diaria (Base cálculo vacaciones / 30)</label>
-						<input type="email" class="form-control" name="email" readonly="readonly">
-					</div>
-					<div class="form-group">
-						<label>Gratificación Mensual (25% del Sueldo Base - Tope legal $126.865)</label>
-						<input type="text" class="form-control" name="movil" readonly="readonly">
+						<label>Total bonos fijos imponibles último mes de remuneración</label>
+						<input type="text" class="form-control" name="bonosFijosImponibles">
 					</div>
 
-					<h6>Asignaciones:</h6>
 					<div class="form-group">
-						<label> Bono Colación:</label>
-						<input type="text" class="form-control" name="rut">
+						<label>Últimas tres remuneraciones variables</label>
+						<input placeholder="Mes uno" type="text" class="form-control" name="mesUno">
+						<br>
+						<input placeholder="Mes dos" type="text" class="form-control" name="mesDos">
+						<br>
+						<input placeholder="Mes tres" type="text" class="form-control" name="mesTres">
+						<br>
 					</div>
+
+					<h3>Asignaciones</h3>
+					
 					<div class="form-group">
-						<label> Bono Movilización:</label>
-						<input type="email" class="form-control" name="email">
+						<label>Bono Colación</label>
+						<input type="text" class="form-control" name="bonoColacion">
+
+						<label>Bono Movilización</label>
+						<input type="text" class="form-control" name="bonoMovilizacion">
 					</div>
-					<div class="form-group">
-						<label>Base Calculo Años de Servicio y Mes de Aviso</label>
-						<input type="text" class="form-control" name="movil" readonly="readonly">
-					</div>
-			
-									
-					<h6>
-						El cálculo de finiquito una herramienta de simulación.
+
+
+						<h6>El cálculo de finiquito una herramienta de simulación.
 LABORALINK no se responsabiliza por el uso que se le de a la información.
 Los resultados obtenidos de este simulador están diseñados con propósitos comparativos.
 Su precisión no está garantizada.  
 </h6>
 			</div>
-				
 			<div class="col-12 text-center">
 				<!--<div class="btn-group mr-2" role="group">
 					<a href="javascript:void(0)" class="btn btn_primario btn_primario2 pl-5 pr-5 mb-3">VOLVER</a>
