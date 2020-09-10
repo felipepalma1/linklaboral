@@ -1,6 +1,4 @@
 <?php
-# template resultados busqueda autos
-//require_once('../../mic/sic.php');
 
 
 session_start();
@@ -21,8 +19,13 @@ session_start();
                 $_SESSION["bonoColacion"] = $_POST["bonoColacion"];
                 $_SESSION["bonoMovilizacion"] = $_POST["bonoMovilizacion"];
 
-		foreach ($_SESSION as $key=>$val)
-    			echo $key." ".$val."<br/>";
+		$fechaInicio = strtotime($_SESSION["fechaContrato"]);
+		$fechaFinal = strtotime($_SESSION["fechaFiniquito"]);
+		
+		$diasTrabajados = ($fechaFinal - $fechaInicio)/60/60/24;
+
+		$anhosDeServicio = floor(abs($fechaFinal - $fechaInicio) / (365*60*60*24) );
+
 
 	## -- Calculo de Resultados.
 		
@@ -32,26 +35,18 @@ session_start();
 		# 3. Paso 3.1 - Remuneraciones Variables
 			
 			$promedioBonosUltimosTresMeses = round((intval($_SESSION["mesUno"]) + intval($_SESSION["mesDos"]) + intval($_SESSION["mesTres"])/3));
-			echo "Promedio ultimos tres meses: ", $promedioBonosUltimosTresMeses, "\n";
-			echo "<br>";
 			
 		# 3. Paso 3.2 - Cálculo Vacaciones
 			
 			$baseCalculoVacaciones = round(intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonosFijosImponibles"]) + intval($promedioBonosUltimosTresMeses));
-			echo "Base Calculo Vacaciones: ", $baseCalculoVacaciones, "\n";
-			echo "<br>";
 
 			$valorRemuneracionDiaria = round(((intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]))/30));
-			echo "Valor Remuneracion Diaria: ", $valorRemuneracionDiaria, "\n";
-			echo "<br>";
 
 			$gratificacionMensual = round(intval($_SESSION["sueldoBase"])*0.25);
 
 			if ($gratificacionMensual >= 126865)	
 				$gratificacionMensual = 126865;
 			
-			echo "Valor Gratificacion Mensual: ", $gratificacionMensual;
-			echo "<br>";
 
 		# 3. Paso 3.3 Asignaciones
 			$asignacionBaseCalculo = $baseCalculoVacaciones + $gratificacionMensual + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]);
@@ -59,8 +54,17 @@ session_start();
 		# 2. Paso 2: Vacaciones
 
                         $totalAPagarPorVacaciones = intval($_SESSION["diasVacacionesPendientes"]) * $valorRemuneracionDiaria;
-			echo "Total a Pagar por Vacaciones: ", $totalAPagarPorVacaciones;
-			echo "<br>";
+
+		# 4. Paso 4: Resultado Finales 
+
+			
+			$indemnizacionPorAnhosDeServicio = $asignacionBaseCalculo;
+			
+			$indemnizacionSustitutiva = $asignacionBaseCalculo;
+			
+			$vacacionesProporcionales = $totalAPagarPorVacaciones;
+			
+			$totalAPagar = $indemnizacionPorAnhosDeServicio + $indemnizacionSustitutiva + $vacacionesProporcionales;
 
 
 
