@@ -28,27 +28,39 @@ session_start();
 		
 		# 1. Paso 1: Antecedentes
 		
-		# 2. Paso 2: Vacaciones
 
-			$totalAPagarPorVacaciones = '';
-	
 		# 3. Paso 3.1 - Remuneraciones Variables
 			
-			$promedioBonosUltimosTresMeses = (intval($_SESSION["mesUno"]) + intval($_SESSION["mesDos"]) + intval($_SESSION["mesTres"])/3);
+			$promedioBonosUltimosTresMeses = round((intval($_SESSION["mesUno"]) + intval($_SESSION["mesDos"]) + intval($_SESSION["mesTres"])/3));
 			echo "Promedio ultimos tres meses: ", $promedioBonosUltimosTresMeses, "\n";
 			echo "<br>";
 			
 		# 3. Paso 3.2 - Cálculo Vacaciones
 			
-			$baseCalculoVacaciones = intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonosFijosImponibles"]) + intval($promedioBonosUltimosTresMeses);
+			$baseCalculoVacaciones = round(intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonosFijosImponibles"]) + intval($promedioBonosUltimosTresMeses));
 			echo "Base Calculo Vacaciones: ", $baseCalculoVacaciones, "\n";
 			echo "<br>";
 
-			$valorRemuneracionDiaria = ((intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]))/30);
+			$valorRemuneracionDiaria = round(((intval($_SESSION["sueldoBase"]) + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]))/30));
 			echo "Valor Remuneracion Diaria: ", $valorRemuneracionDiaria, "\n";
 			echo "<br>";
 
-			$gratificacionMensual = 
+			$gratificacionMensual = round(intval($_SESSION["sueldoBase"])*0.25);
+
+			if ($gratificacionMensual >= 126865)	
+				$gratificacionMensual = 126865;
+			
+			echo "Valor Gratificacion Mensual: ", $gratificacionMensual;
+			echo "<br>";
+
+		# 3. Paso 3.3 Asignaciones
+			$asignacionBaseCalculo = $baseCalculoVacaciones + $gratificacionMensual + intval($_SESSION["bonoColacion"]) + intval($_SESSION["bonoMovilizacion"]);
+			
+		# 2. Paso 2: Vacaciones
+
+                        $totalAPagarPorVacaciones = intval($_SESSION["diasVacacionesPendientes"]) * $valorRemuneracionDiaria;
+			echo "Total a Pagar por Vacaciones: ", $totalAPagarPorVacaciones;
+			echo "<br>";
 
 
 
